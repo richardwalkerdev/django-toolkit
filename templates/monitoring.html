@@ -1,0 +1,66 @@
+<!-- templates/home.html -->
+{% extends '_base.html' %}
+
+{% block title %}Monitoring{% endblock title %}
+
+{% block content %}
+    <h1>Monitoring</h1>
+
+    <!-- panel -->
+    <div class="uk-width-1-1@l">
+        <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+
+            <div class="uk-card-header">
+                <div class="uk-grid uk-grid-small">
+                    <div class="uk-width-auto"><h4>Custom Metrics</h4></div>
+                </div>
+            </div>
+
+            <div class="uk-card-body">
+                <p>Simple custom metrics counters. </p>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <table class="uk-table uk-table-middle uk-table-divider">
+                        <thead>
+                        <tr>
+                            <th class="uk-width-small">Custom Metric</th>
+                            <th>Description</th>
+                            <th>Value</th>
+                            <th>Execute</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Counter One</td>
+                            <td>A simple counter that increments by one each time the button it clicked. <br>Prometheus
+                                metrics name is <code>arbitrary_counter_one_total</code>.
+                            </td>
+                            <td>{{ counter_one }}</td>
+                            <td>
+                                <button class="uk-button uk-button-default" type="submit" name='action'
+                                        value="metric_one">Increment
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Counter Two</td>
+                            <td>A simple counter that increments by two each time the button it clicked. <br>Prometheus
+                                metrics name is <code>arbitrary_counter_two_total</code>.
+                            </td>
+                            <td>{{ counter_two }}</td>
+                            <td>
+                                <button class="uk-button uk-button-default" type="submit" name='action'
+                                        value="metric_two">Increment
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /panel -->
+
+{% endblock content %}
